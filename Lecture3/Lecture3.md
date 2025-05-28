@@ -1,7 +1,7 @@
 ## Objectives
 - Actions and Their Types
 - Counter and Timer
-- Macro 
+- Macro Step,Tasks
 ## Actions
 ### Introduction
 When working with SFC (Sequential Function Charts) and automated programs, we may encounter different types of actions. Sometimes, we need actions that remain active as long as the step is active. In other cases, we may want to delay the action for a certain amount of time before it starts, or keep it active only for a limited duration after the step is activated. In this section, we will explore how to handle these different types of actions effectively.
