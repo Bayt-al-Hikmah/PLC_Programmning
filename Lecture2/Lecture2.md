@@ -45,6 +45,32 @@ Step 4 will be activated only if Steps 1, 2, and 3 are all active, and Transitio
 **AND Divergences:** A directed arc starts from a single transition and splits into multiple steps (known as upstream steps). These divergences are also represented by two horizontal parallel lines.  
 <img src="./attachments/and_div.png" >  
 Steps 2 and 3 will be activated simultaneously if Step 1 is active and Transition "a" is true. This allows us to achieve parallelism.
+#### Example
+Let’s suppose we have the following system composed of:
+- A button (`btn`)
+- Two wagons: CH1 and CH2
+- Four sensors:
+    - `l1` and `l2`: detect when CH1 and CH2 are at the left side
+    - `r1` and `r2`: detect when CH1 and CH2 are at the right side
+<img src="./attachments/example_et.png" >  
+ **Working Cycle**
+- Initially, both wagons start at the left position, detected by sensors `l1` and `l2`.
+- When the user presses the button `btn`, both wagons begin moving to the right simultaneously.
+- When a wagon reaches its corresponding right sensor (`r1` for CH1, `r2` for CH2), it immediately returns to the left without waiting for the other wagon.
+- The other wagon continues its movement to the right independently and returns to the left when it reaches its own right sensor.
+- The cycle is considered complete once both wagons return to the left side (detected again by `l1` and `l2`).
+
+The system actions are represented using the following notations:
+- **L1**: Move CH1 to the **left**
+- **R1**: Move CH1 to the **right**
+- **L2**: Move CH2 to the **left**
+- **R2**: Move CH2 to the **right**
+
+**Solution 1**   
+<img src="./attachments/solution_et.png" height="350px">  
+**Solution 2**
+We can simplify the system further by using two separate initial steps, each representing one wagon. When a wagon completes its cycle, it returns to its own initial step.
+<img src="./attachments/solution_et2.png" height="350px">  
 #### OR Convergences / Divergences
 **OR Convergences:**  Directed arcs originating from multiple transitions converge at a single step. These convergences are represented by one horizontal line.  
 <img src="./attachments/or_conv.png" >  
@@ -52,6 +78,33 @@ Step 4 will be activated if one of Steps 1, 2, or 3 is active **and** the corres
 **OR Divergences:** A directed arc starts from a single step and splits into multiple transitions. These divergences are also represented by one horizontal line.  
 <img src="./attachments/or_div.png" >  
 Either Step 2 or Step 3 will be activated, depending on which transition (a or b) is true. This allows the system to select the path to follow based on specific conditions.
+#### Example
+Let’s suppose we have the following system composed of:
+- Three buttons to select a floor (e.g., Floor 1, Floor 2, Floor 3)
+- Two sensors, c and o, to detect if the door is closed or open
+- Three position sensors: P1, P2, and P3 to detect the current floor of the elevator
+- A motor to control the elevator’s movement  
+
+<img src="./attachments/example_ou.png" height="350px">  
+ 
+ **Working Cycle**
+- Initially, the elevator is located at one of the floors.
+- When the user presses a button corresponding to a specific floor:
+    - The door closes (detected by sensor c)
+    - Once the door is fully closed, the elevator moves up or down depending on its current position and the selected floor.
+- When the elevator reaches the target floor (detected by P1, P2, or P3):
+    - The door opens (detected by sensor o)
+- The cycle ends when:
+    - The elevator has reached the selected floor, and
+    - The door is confirmed to be open
+The system actions are represented using the following notations:
+- **OP**: Open the door
+- **CL**: Close the door
+- **MU**: Move Elevtor up
+- **MD**: Move Elevtor down
+
+<img src="./attachments/solution_ou.png" height="400px">  
+
 #### The Step Jump
 The step jump represents a conditional jump allowing to skip mutilple steps to activate a downstream step in sequence.  
 <img src="./attachments/js.png">  

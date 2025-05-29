@@ -1,7 +1,7 @@
 ## Objectives
 - Actions and Their Types
 - Counter and Timer
-- Macro Step,Tasks
+- Macro Step and Tasks
 ## Actions
 ### Introduction
 When working with SFC (Sequential Function Charts) and automated programs, we may encounter different types of actions. Sometimes, we need actions that remain active as long as the step is active. In other cases, we may want to delay the action for a certain amount of time before it starts, or keep it active only for a limited duration after the step is activated. In this section, we will explore how to handle these different types of actions effectively.
@@ -69,6 +69,10 @@ A bottle conveyor, driven by a three-phase electric motor, is controlled using a
 When the push button is pressed, the conveyor starts. Once the limit switch detects the passage of **5 bottles**, the conveyor stops.  
 A pulse counter is used to count the number of bottles as they pass the limit switch.  
 ![](./attachments/example1.png)  
+The system actions are represented using the following notations:
+- **KM1**: Three-phase Electric Motor working
+- **C**: Represent the Counter
+
 **Solution:**  
 ![](./attachments/solution1.png)  
 ### Timer
@@ -79,7 +83,18 @@ The timer structure is the same as before:
 - **T2** can be omitted, as it is not needed in this case.
 
 This approach ensures that the step remains active for a specific amount of time before transitioning.  
-![](./attachments/timer.png)
+![](./attachments/timer.png)  
+#### Example
+lets suppose weh have the following system that consist of two three-phase electric motors are controlled using two push-buttons (S1: Start and S2: Stop).  
+When S1 is pressed, the first motor starts and runs for 5 minutes, then stops, and the second motor starts and runs for 10 minutes, and so on, alternating as shown in the following diagram.  
+When **S2** is pressed, both motors stop immediately.  
+<img src="./attachments/example2.png" height="250px">  
+The system actions are represented using the following notations:
+- **KM1**: First Motor Working
+- **KM1**: Second Motor Working
+
+**Solution**  
+<img src="./attachments/solution_example2.png" height="350px">  
 ## Macro Step,Tasks
 ### Macro Step
 When working with complex SFCs, the diagram can become large and difficult to read. To improve clarity and highlight specific structures without getting lost in the details, we use macro steps.
