@@ -48,6 +48,20 @@ Equation is : Sytem = Btn1 + Btn2
 The NOT operator is used to invert the state of the input instruction or function that appears to its left.  
 If the original input is `1` (true), the NOT operator will turn it into `0` (false), and vice versa.
 <img src="./attachments/not.png"  height="200px">  
+### Multiple Outputs
+In some control systems, a single set of input conditions may need to activate multiple outputs. Ladder diagrams provide two ways to handle this situation by chaining outputs together:
+#### Multiple Series Outputs
+In this technique, outputs are connected in series, meaning they are placed one after another on the same rung.  
+However, this approach has a major drawback:  
+If one of the outputs fails or becomes inactive, all subsequent outputs in the series will also fail to activate.  
+This makes it less reliable in critical applications.  
+<img src="./attachments/so.png"  height="200px">  
+#### Multiple Parallel Outputs
+Here, the outputs are connected in parallel, with each output having its own rung but sharing the same input conditions.    
+This method is considered more robust and safer because:  
+If one output fails, it does not affect the operation of the others.  
+Parallel outputs ensure independent control and are typically preferred in professional ladder logic designs.  
+<img src="./attachments/po.png"  height="200px">
 ### Memorizing State
 So far, when creating rungs in a ladder diagram, we’ve connected input instructions directly to outputs. In this setup, if the input is high (ON), the output is also high. When the input goes low (OFF), the output turns off as well.  
 However, this approach creates a limitation in systems controlled by a momentary push-button. For example, if we use a push-button to start a motor, the motor will only stay on as long as the button is being pressed. This is not practical for most applications, as we don’t want users to hold the button continuously to keep the system running.
@@ -127,6 +141,8 @@ A rising edge (or positive edge) detects a transition from 0 to 1 (OFF to ON). I
 #### Falling Edge (Negative Edge)
 A falling edge (or negative edge) detects a transition from 1 to 0 (ON to OFF). It is triggered only at the moment the input changes from high to low. It is symbolized as follows:  
 <img src="./attachments/img17.png" height="170px">    
+#### OSR and OSF
+we can also use 
 ## Counter and Timer
 ### Counter
 A counter is a function block used to count events, either up or down, until a specified limit is reached. When the counter reaches this limit, its output is activated (set to ON).

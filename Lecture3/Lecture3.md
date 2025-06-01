@@ -91,7 +91,7 @@ When **S2** is pressed, both motors stop immediately.
 <img src="./attachments/example2.png" height="250px">  
 The system actions are represented using the following notations:
 - **KM1**: First Motor Working
-- **KM2**: Second Motor Working
+- **KM1**: Second Motor Working
 
 **Solution**  
 <img src="./attachments/solution_example2.png" height="350px">  
