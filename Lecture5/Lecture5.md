@@ -41,6 +41,7 @@ We need to provide:
 - `LO`: the low limit of the input range (e.g., 0)
 
 <img src="./attachments/img1.png" height="200px" >  
+
 #### Scaling `SCALE_X`:
 The `SCALE_X` function scales the normalized value to the desired engineering units.  
 We need to provide:
@@ -85,12 +86,14 @@ This operator checks if two values are not equal.
 - If they are equal, the output is 0 (false).
 
 <img src="./attachments/img6.png" height="200px">
+
 #### Less Than (<) Operator
 This operator checks if the first value is less than the second.
 - If the first value is smaller, the output is 1 (true).
 - Otherwise, the output is 0 (false).
 
 <img src="./attachments/img8.png" height="200px">  
+
 #### Greater Than (>) Operator
 This operator checks if the first value is greater than the second.
 - If the first value is larger, the output is 1 (true).
@@ -104,12 +107,14 @@ This operator checks if the first value is less than or equal to the second
 - If the first value is greater, the output is 0 (false).
 
 <img src="./attachments/img9.png" height="200px">  
+
 #### Greater Than or Equal (>=) Operator
 This operator checks if the first value is greater than or equal to the second.
 - If it is, the output is 1 (true).
 - If the first value is smaller, the output is 0 (false).
 
-<img src="./attachments/img10.png" height="200px">  
+<img src="./attachments/img10.png" height="200px"> 
+
 #### In-Range Operator
 This operator checks if a value is within a specific range, inclusive.
 - If the value is between or equal to the minimum and maximum limits, the output is 1 (true).
@@ -155,6 +160,7 @@ In Ladder Logic:
 #### Example 1
 Let’s suppose we have the following SFC diagram:  
 <img src="./attachments/example1.png" height="280px">  
+
 To convert it into Ladder Logic, we follow these steps:  
 We begin by identifying the transitions between steps:
 - `Tr1 = S1`
@@ -183,7 +189,8 @@ This means:
 <img src="./attachments/solution1.png">  
 #### Example 2
 Let’s suppose we have the following SFC diagram:  
-<img src="./attachments/example2.png" height="280px">  
+<img src="./attachments/example2.png" height="280px">   
+
 To convert it into Ladder Logic, we follow these steps:  
 We begin by identifying the transitions between steps:
 - `Tr1 = S1`
