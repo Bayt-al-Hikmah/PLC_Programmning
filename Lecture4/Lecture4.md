@@ -46,8 +46,10 @@ For example, if we want an output to turn on when either Button 1 or Button 2 is
 Equation is : Sytem = Btn1 + Btn2
 ### The Not Operator
 The NOT operator is used to invert the state of the input instruction or function that appears to its left.  
-If the original input is `1` (true), the NOT operator will turn it into `0` (false), and vice versa.
-<img src="./attachments/not.png"  height="200px">  
+If the original input is `1` (true), the NOT operator will turn it into `0` (false), and vice versa.  
+
+<img src="./attachments/not.png"  height="200px"> 
+
 ### Multiple Outputs
 In some control systems, a single set of input conditions may need to activate multiple outputs. Ladder diagrams provide two ways to handle this situation by chaining outputs together:
 #### Multiple Series Outputs
@@ -71,11 +73,12 @@ The ladder diagram will look like this:
 <img src="./attachments/img8.png" height="200px">  
 
 After we press the button, the output (e.g., motor) turns ON, and the memory bit `M` is also set to ON. Even after the button is released, the parallel contact `M` keeps the circuit closed, allowing the system to remain active.  
-<img src="./attachments/img9.png" height="200px">
+<img src="./attachments/img9.png" height="200px">  
 The only issue now is that the system would stay ON indefinitely, with no way to stop it. To address this, we introduce a normally closed stop button in series before the output. Pressing this stop button breaks the circuit and turns the motor OFF.  
 Here is how it looks:   
 
 <img src="./attachments/img10.png" height="200px">  
+
 #### Set/Reset Coil
 Another common method to store the state of an output in ladder logic is by using Set (S) and Reset (R) coils. This technique allows us to control an output using two separate buttons: a Start button and a Stop button.
 - The Set coil sets the output to `1` (ON) and keeps it ON until it is explicitly reset.
@@ -90,7 +93,8 @@ We can control a motor using two push-buttons: one for Start and one for Stop.
     - If it was OFF, it remains OFF.
         
 - If both buttons are pressed simultaneously, the execution order in the ladder program becomes important. Since ladder logic executes from top to bottom, the first coil encountered (Set or Reset) determines the final output state.
-<img src="./attachments/img11.png" height="200px">  
+<img src="./attachments/img11.png" height="200px">
+
 We can also use the SR (Set/Reset) block to represent the Set and Reset coils. This block has two inputs one for Set (S) and one for Reset (R) and one output that represents the current state of the block.  
 The previous example using separate Set and Reset coils can be simplified using an SR block as follows:
 - Connect the Start button to the Set (S) input.
@@ -109,6 +113,7 @@ Let’s suppose we have a system consisting of a garage door, three buttons, and
     - One to detect when the garage door is fully closed
 
 <img src="./attachments/img13.png" height="250px">  
+
 **Working Cycle**  
 - When the user presses the Open button, the garage door starts opening and continues until the open sensor detects that it is fully open.
 - When the user presses the Close button, the door starts closing and continues until the closed sensor detects that it is fully closed.
@@ -131,6 +136,7 @@ From the working cycle, we can conclude the following:
 - RESET(REV) = DOWN+ S TOP
 
 <img src="./attachments/img14.png" height="370px">  
+
 ### Edge Detection
 Edge detection is used to monitor changes in the state of an input, rather than continuously sending its current state. By using edge detection instructions, we can detect either a rising or falling edge of an input signal.  
 This is especially useful when working with counters, as it ensures that the counter only increments or decrements once per input transition, rather than continuously counting while the input is high or low.  
@@ -141,8 +147,7 @@ A rising edge (or positive edge) detects a transition from 0 to 1 (OFF to ON). I
 #### Falling Edge (Negative Edge)
 A falling edge (or negative edge) detects a transition from 1 to 0 (ON to OFF). It is triggered only at the moment the input changes from high to low. It is symbolized as follows:  
 <img src="./attachments/img17.png" height="170px">    
-#### OSR and OSF
-we can also use 
+
 ## Counter and Timer
 ### Counter
 A counter is a function block used to count events, either up or down, until a specified limit is reached. When the counter reaches this limit, its output is activated (set to ON).
@@ -164,7 +169,8 @@ The CTU block typically includes the following inputs and outputs:
 - **CV (Current Value)**: The current count.
 - **Q (Output)**: Set to 1 when `CV >= PV`.
 
-<img src="./attachments/img18.png" height="200px">    
+<img src="./attachments/img18.png" height="200px">  
+
 ### Down Counter (CTD)
 The Down Counter (CTD) is useful when we want to count down from a specific value to zero, such as tracking the number of available items or remaining operations.
 - It starts from a preset value and decrements by 1 each time it receives a trigger signal (typically a rising edge).
@@ -179,7 +185,8 @@ The CTD block typically includes the following inputs and outputs:
 - **CV (Current Value)**: The current count.
 - **Q (Output)**: Set to 1 when `CV <= 0`.
 
-<img src="./attachments/img19.png" height="200px">    
+<img src="./attachments/img19.png" height="200px">
+
 ### Up/Down Counter (CTUD)
 The Up/Down Counter (CTUD) combines both counting up and counting down capabilities in a single block. It is especially useful when we need to track a balance that increases and decreases dynamically such as people entering and exiting a room, or parts added and removed from a system.
 - It increments the current count when the Count Up (CU) input is triggered.
@@ -198,6 +205,7 @@ The CTUD block typically includes the following inputs and outputs:
 - **QD (Down Output)**: Set to 1 when `CV <= 0`.
 
 <img src="./attachments/img20.png" height="200px">    
+
 #### Example
 A bottle conveyor, driven by a three-phase electric motor, is controlled using a push button and a rod-type limit switch.
 - When the push button is pressed, the conveyor starts moving.
@@ -207,6 +215,7 @@ A bottle conveyor, driven by a three-phase electric motor, is controlled using a
 A pulse counter is used to count the number of bottles as they pass the sensor.
 
 ![Conveyor System](./attachments/example1.png)  
+
 **Solution**
 We can implement the control using Set (S) and Reset (R) coils because the conveyor motor needs to remain ON until 5 bottles pass, then turn OFF.
 Based on the system operation cycle, we can define the logic as follows:
@@ -217,12 +226,14 @@ Based on the system operation cycle, we can define the logic as follows:
 - The Counter is also reset automatically after reaching the preset value to prepare for the next cycle
 
 <img src="./attachments/img21.png" height="330px">  
+
 ### Timers
 A Timer is a function block used to introduce time delays in automation systems. It activates or deactivates an output after a specified amount of time has passed, based on an input condition. 
 There are three common types of timers:
 - ON-Delay Timer (TON): Delays turning ON an output after the input condition is true for a set duration.
 - OFF-Delay Timer (TOF): Delays turning OFF an output after the input condition goes false.
 - Pulse Timer (TP): Generates a fixed-length pulse when triggered, regardless of how long the input remains active.
+
 ### ON-Delay Timer (TON)
 The TON timer is used when we want to delay the activation of an output. It starts timing when the input becomes true. If the input remains true for the full preset duration, the output turns ON.
 - If the input goes false before the delay is completed, the timer resets and the output remains OFF.
@@ -236,6 +247,7 @@ The TON block typically includes:
 - **Q (Output)**: Set to 1 when `ET >= PT`.
 
 <img src="./attachments/img22.png" height="200px">  
+
 ### OFF-Delay Timer (TOF)
 The TOF timer is used to delay deactivating an output. When the input signal turns OFF, the timer starts counting. Once the preset time elapses, the output is turned OFF.
 - If the input is turned back ON before the timer finishes, the countdown resets and the output remains ON.
@@ -248,7 +260,8 @@ The TOF block typically includes:
 - **ET (Elapsed Time)**: Time passed since input turned false.    
 - **Q (Output)**: Set to 1 while input is ON, and remains ON during the delay after input goes OFF.
 
-<img src="./attachments/img23.png" height="200px">  
+<img src="./attachments/img23.png" height="200px">
+
 ### Pulse Timer (TP)
 The TP timer is used to generate a fixed-duration pulse. When the input becomes true, the output turns ON and stays ON for the preset time, regardless of whether the input stays ON or turns OFF.  
 - Useful for triggering timed actions like buzzers, alarms, or one-shot pulses.
@@ -260,19 +273,21 @@ The TP block typically includes:
 - **ET (Elapsed Time)**: Time passed since pulse started.
 - **Q (Output)**: Set to 1 during the time pulse is active (`ET < PT`).
 
-<img src="./attachments/img24.png" height="200px">  
+<img src="./attachments/img24.png" height="200px"> 
+
 #### Example
 lets suppose weh have the following system that consist of two three-phase electric motors are controlled using two push-buttons (S1: Start and S2: Stop).  
 When S1 is pressed, the first motor starts and runs for 5 minutes, then stops, and the second motor starts and runs for 10 minutes, and so on, alternating as shown in the following diagram.  
-When **S2** is pressed, both motors stop immediately.  
+When **S2** is pressed, both motors stop immediately.   
 <img src="./attachments/example2.png" height="250px">  
+
 The system actions are represented using the following notations:
 - **KM1**: First Motor Working
 - **KM1**: Second Motor Working
 
 **Solution**  
-We can implement the control logic using Set (S)** and Reset (R) coils to maintain the system's state, and two OFF-Delay Timers (TOF) to control the activation of the motors.  
-Based on the system's operation cycle, the control logic can be described as follows:
+We can implement the control logic using Set (S)* and Reset (R) coils to maintain the system's state, and two OFF-Delay Timers (TOF) to control the activation of the motors.  
+Based on the system's operation cycle, the control logic can be described as follows:  
 - The system is set (activated) when the S1 button is pressed.
 - The system is reset (deactivated) when the S2 button is pressed.
 - KM1 is controlled by the output of TOF1 and the active system state. KM1 turns ON when the system is active and TOF1.Q is true.
@@ -285,7 +300,8 @@ Based on the system's operation cycle, the control logic can be described as fol
 - RESET(SYSTEM) = S2
 - KM1 = SYSTEM . TOF1(Q) 
 - KM2 = SYSTEM . TOF2(Q) 
-- TOF1(IN) =  $\uparrow$S1.$\overline{KM2}$ + $\downarrow$KM2
-* TOF2(IN) =  $\downarrow$KM1
+- TOF1(IN) = $\uparrow S1. \overline{KM2} + \downarrow$ KM2
+* TOF2(IN) = $\downarrow$ KM1
+
 
 <img src="./attachments/img25.png" height="450px">

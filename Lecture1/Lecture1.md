@@ -49,7 +49,7 @@ Functions of the supervision part:
 - Displays system status (e.g., running, error, idle).
 - Helps with diagnostics and troubleshooting through visual feedback.
 
-<img src="./attachments/plc.png" height="240px">
+<img src="./attachments/PLC.png" height="240px">
 
 ## Programmable Logic Controller
 ### Introduction
