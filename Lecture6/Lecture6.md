@@ -34,7 +34,7 @@ A I0.1      // AND the RLO with the state of I0.1
 = Q0.0      // Assign the final RLO to Q0.0
 ```
 
-**Ladder Logic Representation:** 
+**Ladder Logic Representation:**   
 <img src="attachments/img1.png" height="120px">
 
 #### AND Not (AN)
@@ -57,7 +57,7 @@ O I0.1      // OR the RLO with the state of I0.1
 = Q0.0      // Assign the final RLO to Q0.0
 ```
 **Ladder Logic Representation:**   
-<img src="attachments/img3.png" height="180px">
+<img src="attachments/img3.png" height="180px">   
 #### OR Not (ON)
 This instruction performs a logical OR with the inverse of the operand.    
 The RLO will be 1 if the previous RLO is 1, OR if the operand is 0.  
@@ -81,9 +81,9 @@ X I0.1      // XOR the RLO with the state of I0.1
 = Q0.0      // Assign the final RLO to Q0.0
 ```
 
-**Ladder Logic Representation:** 
-
-<img src="attachments/img5.png" height="180px">
+**Ladder Logic Representation:**   
+   
+<img src="attachments/img5.png" height="180px">   
 #### Exclusive OR Not (XN)
 This instruction performs an Exclusive OR with the inverse of the operand. This is equivalent to an XNOR (Exclusive NOR) operation, where the RLO is 1 if the operands are the same.  
 **Example:** This logic implements the equation $Q0.0=I0.0\oplus\overline{I0.1}=(I0.0\cdot I0.1)+(\overline{I0.0}\cdot\overline{I0.1})$.
@@ -93,8 +93,8 @@ XN I0.1     // XOR the RLO with the inverted state of I0.1
 = Q0.0      // Assign the final RLO to Q0.0
 ```
 
-**Ladder Logic Representation:** 
-<img src="attachments/img6.png" height="180px">  
+**Ladder Logic Representation:**  
+<img src="attachments/img6.png" height="180px">   
 #### Assign (=)
 The Assign instruction (=) concludes a logic string. It takes the final value of the Result of Logic Operation (RLO) and writes it to the specified operand (e.g., an output).  
 **Example:**
