@@ -97,13 +97,20 @@ Unlike the L instruction, the T instruction does **not** affect the contents of 
 T STW (instruction T with the address STW) transfers bit 0 to bit 8 of ACCU 1 into the status word. The instruction is executed without regard to the status bits.
 #### TAR1 & TAR2: Transferring from Address Registers
 The TAR instructions do the opposite of the LAR instructions. Instead of loading a value into an address register, TAR copies the 32-bit pointer value from an address register into a specified memory location. This is useful for saving a pointer for later use.  
-**TAR1 \<D\>**
+
+**TAR1 \<D\>**  
+
 TAR1 \<D\> transfers the contents of address register AR1 into the addressed double word . Possible destination areas are memory double words (MD), local data double words (LD), data double words (DBD), and instance data words (DID)
+
 **TAR2 \<D\>**
+
 TAR2 \<D\> transfers the contents of address register AR2 into the addressed double word . Possible destination areas are memory double words (MD), local data double words (LD), data double words (DBD), and instance data words (DID)
-**TAR1 (to ACCU 1)**
-TAR1 transfers the contents of address register AR1 into ACCU 1 (32-bit pointer). The previous contents of ACCU 1 are saved into ACCU 2.
-**TAR2 (to ACCU 1)**  
+**TAR1 (to ACCU 1)**  
+
+TAR1 transfers the contents of address register AR1 into ACCU 1 (32-bit pointer). The previous contents of ACCU 1 are saved into ACCU 2.  
+
+**TAR2 (to ACCU 1)** 
+
 TAR2 transfers the contents of address register AR2 into ACCU 1 (32-bit pointer). The previous contents of ACCU 1 are saved into ACCU 2.
 ### CAR
 CAR (swap address register) exchanges the contents of address registers AR1 and AR2. The instruction is executed without regard to, and without affecting, the status bits. The contents of address register AR1 are moved to address register AR2 and the contents of address register AR2 are moved to address register AR1.
@@ -125,6 +132,7 @@ Integer comparison involves comparing the contents of ACCU 2-L with the contents
 | <>I      | Not equal to             |
 | >=I      | Greater than or equal to |
 | <=I      | Less than or equal to    |
+
 - Use the L (Load) instruction to load the first operand. This places the value into ACCU1.
 - Load the second operand using another L instruction. This shifts the previous value from ACCU1 to ACCU2, and places the new value in ACCU1.
 - Finally, use the appropriate comparison instruction (e.g., >I, \=\=I) to compare the two values.
@@ -148,6 +156,7 @@ Integer comparison involves comparing the contents of ACCU1 with the contents of
 | <>D      | Not equal to             |
 | >=D      | Greater than or equal to |
 | <=D      | Less than or equal to    |
+
 - Use the L (Load) instruction to load the first operand. This places the value into ACCU1.
 - Load the second operand using another L instruction. This shifts the previous value from ACCU1 to ACCU2, and places the new value in ACCU1.
 - Finally, use the appropriate comparison instruction (e.g., >D, \=\=D) to compare the two values.
@@ -172,6 +181,7 @@ The Compare Floating Point Number (32-bit, IEEE 754) instructions compare the co
 | <>R      | Not equal to             |
 | >=R      | Greater than or equal to |
 | <=R      | Less than or equal to    |
+
 - Use the L (Load) instruction to load the first operand. This places the value into ACCU1.
 - Load the second operand using another L instruction. This shifts the previous value from ACCU1 to ACCU2, and places the new value in ACCU1.
 - Finally, use the appropriate comparison instruction (e.g., >R, \=\=R) to compare the two values.
@@ -193,9 +203,12 @@ L MW10 //Load the BCD number into ACCU 1-L.
 BTI //Convert from BCD to integer; store result in ACCU 1-L. 
 T MW20 //Transfer result (integer number) to MW20.
 ```
-<img src="./attachments/img1.png">  
+
+<img src="./attachments/img1.png">   
+
 ### ITB Integer (16-Bit) to BCD
 ITB (binary to decimal conversion of a 16-bit integer number) interprets the contents of ACCU 1-L as a 16-bit integer and converts it to a three-digit binary coded decimal number (BCD). The result is stored in the low word of accumulator 1. Bit 0 to bit 11 contain the value of the BCD number. Bit 12 to bit 15 are set to the state of the sign (0000 = positive, 1111= negative) of the BCD number. The high word of accumulator 1 and accumulator 2 remain unchanged.   
+
 The BCD number can be in the range of "-999" to "+999." If the number is out of the permissible range, then the status bits OV and OS are set to 1.   
 The instruction is executed without regard to, and without affecting, the RLO.  
 ```
@@ -203,7 +216,9 @@ L MW10 //Load the integer number into ACCU 1-L.
 ITB //Convert from integer to BCD (16-bit); store result in ACCU 1-L. 
 T MW20 //Transfer result (BCD number) to MW20.
 ```
-<img src="./attachments/img2.png">  
+
+<img src="./attachments/img2.PNG">  
+
 ### BTD BCD to Integer (32-Bit)
 BTD (decimal to binary conversion of a 7-digit BCD number) interprets the contents of ACCU 1 as a seven digit binary coded decimal number (BCD) and converts it to a 32-bit double integer. The result is stored in accumulator 1. Accumulator 2 remains unchanged.  
 BCD number in ACCU 1: The permissible value range for the BCD number is from "-9,999,999" to "+9,999,999". Bit 0 to bit 27 are interpreted as the value and bit 31 as the sign (0 = positive, 1= negative) of the BCD number. Bit 28 to bit 30 are not used in the conversion. If any decimal digit (a 4-bit tetrad of the BCD coding) is in the invalid range of 10 to 15, a BCDF error occurs during attempted conversion.   
@@ -213,9 +228,11 @@ L MD10 //Load the BCD number into ACCU 1.
 BTD //Convert from BCD to integer; store result in ACCU 1. 
 T MD20 //Transfer result (double integer number) to MD20.
 ```
-<img src="./attachments/img3.png">  
+
+<img src="./attachments/img3.PNG">  
+
 ### ITD Integer (16 Bit) to Double Integer (32-Bit)
-ITD (conversion of a 16-bit integer number to a 32-bit integer number) interprets the contents of ACCU 1-L as a 16-bit integer and converts it to a 32-bit double integer. The result is stored in accumulator 1. Accumulator 2 remains unchanged.
+ITD (conversion of a 16-bit integer number to a 32-bit integer number) interprets the contents of ACCU 1-L as a 16-bit integer and converts it to a 32-bit double integer. The result is stored in accumulator 1. Accumulator 2 remains unchanged.  
 The High word set to 1s
 ```
 L MW12 //Load the integer number into ACCU 1. 
@@ -230,7 +247,8 @@ L MD10 //Load the 32-bit integer into ACCU 1.
 DTB //Convert from integer (32-bit) to BCD, store result in ACCU 1. 
 T MD20 //Transfer result (BCD number) to MD20.
 ```
-<img src="./attachments/img4.png">  
+<img src="./attachments/img4.PNG">  
+
 ### DTR Double Integer (32-Bit) to Floating-Point (32-Bit IEEE 754)
 DTR (conversion of a 32-bit integer number to a 32-bit IEEE floating point number) interprets the content of ACCU 1 as a 32-bit double integer and converts it to a 32-bit IEEE floating point number. If necessary, the instruction rounds the result. (A 32-bit integer has a higher accuracy than a 32-bit floating point number). The result is stored in accumulator 1.
 ```
@@ -238,7 +256,8 @@ L MD10 //Load the 32-bit integer into ACCU 1.
 DTR //Convert from double integer to floating point (32-bit IEEE FP); store //result in ACCU 1. 
 T MD20 //Transfer result (BCD number) to MD20.
 ```
-<img src="./attachments/img5.png">   
+<img src="./attachments/img5.PNG">   
+
 ### INVI Ones Complement Integer (16-Bit)
 INVI (ones complement integer) forms the ones complement of the 16-bit value in ACCU 1-L. Forming the ones complement inverts the value bit by bit, that is, zeros replace ones and ones replace zeros. The result is stored in the low word of accumulator 1.
 ```
@@ -267,6 +286,7 @@ T MW10 //Transfer result to MW10.
 | -32768<= Result <=-1 | 0   | 1   | 0   | -   |
 | 32767 >= Result >=1  | 1   | 0   | 0   | -   |
 | Result = 2768        | 0   | 1   | 1   | 1   |
+
 ### NEGD Twos Complement Double Integer (32-Bit)
 NEGD (twos complement double integer) forms the twos complement of the 32-bit value in ACCU 1. Forming the twos complement inverts the value bit by bit, that is, zeros replace ones and ones replace zeros; then a "1" is added. The result is stored in accumulator 1. The twos complement instruction is equivalent to a multiplication by "-1" The instruction is executed without regard to, and without affecting, the RLO. The status bits CC 1, CC 0, OS, and OV are set as a function of the result of the operation.
 ```
@@ -281,6 +301,7 @@ T MD10 //Transfer result to MD10.
 | -2.147.483.647 <= Result <= -1 | 0   | 1   | 0   | -   |
 | 2.147.483.647 >= Result >= 1   | 1   | 0   | 0   | -   |
 | Result = -2 147 483 648        | 0   | 1   | 1   | 1   |
+
 ### NEGR Negate Floating-Point Number (32-Bit, IEEE 754)
 NEGR (negate 32-bit IEEE floating-point number) negates the floating-point number (32-bit, IEEE 754) in ACCU 1. The instruction inverts the state of bit 31 in ACCU 1 (sign of the mantissa). The result is stored in accumulator 1.
 ```
@@ -300,6 +321,7 @@ T MW20 //Transfer the result to MW20.
 | -------- | --------- | --------- | --------- | --------- |
 | Before   | A         | B         | C         | D         |
 | After    | A         | B         | D         | C         |
+
 ### CAD Change Byte Sequence in ACCU 1 (32-Bit)
 CAD reverses the sequence of bytes in ACCU 1. The result is stored in accumulator 1. Accumulator 2 remains unchanged.
 ```
@@ -313,6 +335,8 @@ T MD20 //Transfer the results to MD20.
 | Before   | A         | B         | C         | D         |
 | After    | D         | C         | B         | A         |
 
+
 ### RND,RND+,RND- Round
 RND (conversion of a 32-bit IEEE floating-point number to 32-bit integer) interprets the contents of ACCU 1 as a 32-bit IEEE floating-point number (32-bit, IEEE 754). The instruction converts the 32- bit IEEE floating-point number to a 32-bit integer (double integer) and rounds the result to the nearest whole number. If the fractional part of the converted number is midway between an even and an odd result, the instruction chooses the even result. If the number is out of the permissible range, then the status bits OV and OS are set to 1. The result is stored in accumulator 1. Conversion is not performed and an overflow indicated in the event of a fault (utilization of a NaN or a floating-point number that cannot be represented as a 32-bit integer number).  
+
 We also have RND+ rounds the result to the smallest whole number greater than or equal to the floating-point number, and RND- rounds the result to the smallest whole number smaller than or equal to the floating-point number
